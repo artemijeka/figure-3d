@@ -1,0 +1,8 @@
+@keyframes rotate-scene {
+  0% {
+    transform: perspective(1024px) rotateY(0) translate3d(0px,0px,0px);
+  }
+  100% {
+    transform: perspective(1024px) rotateY(360deg) translate3d(0px,0px,0px);
+  }
+}

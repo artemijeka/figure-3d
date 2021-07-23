@@ -1,0 +1,118 @@
+@import "rotate-figure";
+@import "rotate-scene";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #111;
+  overflow: hidden;
+}
+
+.figure-3d {
+  &__scene {
+    transform-style: preserve-3d;
+    animation: rotate-scene 30s linear infinite;
+    // transform: perspective(1024px) rotateY(0);
+
+    position: relative;
+    &-floor {
+      width: 1024px;
+      height: 1024px;
+      background-color: #f00;
+      background-image: url(./img/floor.jpg);
+      background-size: cover;
+      transform: translate3d(-50%, -20%, 0) rotateX(90deg);
+      box-shadow: inset 0 0 320px rgba(0, 0, 0, 0.9);
+
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    &-wall {
+      width: 1024px;
+      height: 1024px;
+      background-image: url(./img/wall.jpg);
+      background-size: cover;
+      backface-visibility: hidden;
+      box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.9);
+
+      position: absolute;
+      left: 0;
+      top: 0;
+      &.--i-1 {
+        transform: translate3d(-50%, -70%, -512px);
+      }
+      &.--i-2 {
+        transform: translate3d(0%, -70%, 0) rotateY(270deg);
+      }
+      &.--i-3 {
+        transform: translate3d(-50%, -70%, 512px) rotateY(180deg);
+      }
+      &.--i-4 {
+        transform: translate3d(-100%, -70%, 0px) rotateY(90deg);
+      }
+    }
+  }
+  &__figure {
+    transform-style: preserve-3d;
+    animation: rotate-figure 3s linear infinite;
+    // transform: rotateX(0deg) rotateY(45deg);
+
+    position: absolute;
+  }
+
+  &__cube {
+    width: 450px;
+    height: 60px;
+    transform-style: preserve-3d;
+    transform: translate3d(-50%, -50%, 0) rotate(calc(60deg * var(--i)));
+    transform-origin: center center;
+    
+    position: absolute;
+    &-side {
+      width: 100%;
+      background-color: white;
+
+      position: absolute;
+      left: 0;
+      top: 0;
+      &:nth-child(1) {//внешния сторона | external side
+        height: 60px;
+        transform: rotateX(0deg) translate3d(0, 0, 60px);
+      }
+      &:nth-child(2) {
+        height: 120px;
+        transform: rotateX(90deg) translate3d(0, 0, 0);
+        box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.25);
+      }
+      &:nth-child(3) {//внешния сторона | external side
+        height: 60px;
+        transform: rotateX(180deg) translate3d(0, 0, 60px);
+      }
+      &:nth-child(4) {
+        height: 120px;
+        transform: rotateX(90deg) translate3d(0, 0, 60px);
+        box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.25);
+      }
+      &:nth-child(5) {/* торец | butt */
+        width: 120px;
+        height: 60px;
+        transform: rotateY(90deg) translate3d(0, 0, 390px);
+        box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.25);
+      }
+      &:nth-child(6) {/* торец | butt */
+        width: 120px;
+        height: 60px;
+        transform: rotateY(90deg) translate3d(0, 0, -60px);
+        box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+}
