@@ -11,14 +11,14 @@
     var x = 0;
     var oldX = 0;
 
-    figure3d__scene.addEventListener("mousedown", function (e) {
-      figure3d__scene.onmousemove = function (e) {
+    window.addEventListener("mousedown", function (e) {
+      window.onmousemove = function (e) {
         mouseMoveFunction(e, 'move');
       }
     });
 
-    document.addEventListener("mouseup", function (e) {
-      figure3d__scene.onmousemove = function (e) {
+    window.addEventListener("mouseup", function (e) {
+      window.onmousemove = function (e) {
         mouseMoveFunction(e, 'stop');
       }
     });
